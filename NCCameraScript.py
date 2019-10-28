@@ -18,7 +18,7 @@ Min = 10
 
 #The function for the cameras
 def GetTraffic():
-    print ("looking at traffic...")
+    print ("looking at traffic...%s" % datetime.datetime.now())
     
     # get the images and save them
     urllib.request.urlretrieve(Murl, "Mdummy.jpg")
