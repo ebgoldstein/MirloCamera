@@ -42,14 +42,12 @@ def GetTraffic():
     
 #schedule
 scheduler = sched.scheduler(time.time, time.sleep)
+scheduler.enter(0, 1, GetTraffic, ())
 
-#function
-def periodic(scheduler, interval, action, actionargs=()):
-    scheduler.enter(interval, 1,
-                    periodic, (scheduler, interval, action, actionargs))
-    action(*actionargs)
+#loop to make it go
+while True:
+    scheduler.run()
+    scheduler.enter(Min*60, 1, GetTraffic, ())
 
-#make it go
-periodic(scheduler, 1, GetTraffic)
 
 
