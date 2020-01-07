@@ -8,9 +8,9 @@ import datetime
 os.chdir("/home/pi/Documents/NC_TCs")
 
 #Mirlo, Ocracoke, and Hatteras URLs
-Murl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_Mirlo_Beach.jpg"
-Ourl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_Ocracoke_North.jpg"
-Hurl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_North_Hatteras_Village.jpg"
+Murl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_MirloBeach.jpg"
+Ourl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_OcracokeNorth.jpg"
+Hurl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_NorthHatterasVillage.jpg"
 
 #Minute delay
 Min = 10
