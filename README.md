@@ -6,5 +6,5 @@ The work is motivated by a JGR-ES commentary written in 2019 by @edlazarus and m
 
 'Is there a Bulldozer in your model?'  https://doi.org/10.1029/2018JF004957
 
-Script is currently running on a dedicated Raspberry Pi 4 in my office, and focused on several NC DOT traffic cameras:
-  https://tims.ncdot.gov/tims/Default.aspx?ClientTimeZone=America/New_York
+Script is currently running on a dedicated Raspberry Pi 4 ~~in my office~~, and focused on several NC DOT traffic cameras:
+https://drivenc.gov/
