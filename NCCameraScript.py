@@ -18,6 +18,7 @@ NewInlet = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_NewInlet.
 Canal = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_CanalZone.jpg"
 NorthDock = "https://tims.ncdot.gov/TIMS/Cameras/viewimage.ashx?id=Hatteras_Inlet_North_Dock.jpg"
 SouthDock = "https://tims.ncdot.gov/TIMS/Cameras/viewimage.ashx?id=Hatteras_Inlet_South_Dock.jpg"
+SouthOcracoke = "https://tims.ncdot.gov/tims/cameras/viewimage.ashx?id=Ocracoke_South.jpg"
 
 #unused RN
 RBNurl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=RodantheBridgeNorth.jpg"
@@ -52,6 +53,7 @@ def LookAtTraffic():
     GetTrafficCam(NewInlet, 'NewInlet')
     GetTrafficCam(NorthDock,'NorthDock')
     GetTrafficCam(SouthDock, 'SouthDock')
+    GetTrafficCam(SouthOcracoke, 'SouthOcracoke')
   
 #schedule
 scheduler = sched.scheduler(time.time, time.sleep)
