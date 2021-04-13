@@ -1,4 +1,5 @@
 # Import the libs
+
 import os
 import urllib.request
 import sched, time
@@ -8,67 +9,59 @@ import datetime
 os.chdir("/home/pi/Documents/NC_TCs")
 
 #Mirlo, Ocracoke, and Hatteras URLs
-Murl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_MirloBeach.jpg"
-Ourl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_OcracokeNorth.jpg"
-Hurl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_NorthHatterasVillage.jpg"
-Burl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_Buxton.jpg"
-Nurl =  "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_NewInlet.jpg"
-Aurl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_CanalZone.jpg"
+#from   https://www.drivenc.gov/
+Mirlo = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_MirloBeach.jpg"
+Ocracoke = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_OcracokeNorth.jpg"
+Hatteras = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_NorthHatterasVillage.jpg"
+Buxton = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_Buxton.jpg"
+NewInlet = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_NewInlet.jpg"
+Canal = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=NC12_CanalZone.jpg"
+NorthDock = "https://tims.ncdot.gov/TIMS/Cameras/viewimage.ashx?id=Hatteras_Inlet_North_Dock.jpg"
+SouthDock = "https://tims.ncdot.gov/TIMS/Cameras/viewimage.ashx?id=Hatteras_Inlet_South_Dock.jpg"
+
+#unused RN
+RBNurl = "https://tims.ncdot.gov/TIMS/cameras/viewimage.ashx?id=RodantheBridgeNorth.jpg"
+OSurl = "https://tims.ncdot.gov/tims/cameras/viewimage.ashx?id=Ocracoke_South.jpg"
 
 #Minute delay
 Min = 10
 
-
 #The function for the cameras
-def GetTraffic():
+def GetTrafficCam(URL,camera):
+    
+    # retrieve the image
+    urllib.request.urlretrieve(URL, "dummy.jpg")
+
+    #determine image name
+    ImName = camera + '/' + str(datetime.datetime.now()) + '-' + camera + '.jpg'
+    
+    #save image
+    os.rename('dummy.jpg', ImName)
+    
+def LookAtTraffic():
+    
+    #print for debug
     print ("looking at traffic...%s" % datetime.datetime.now())
     
-    # get the images and save them
-    urllib.request.urlretrieve(Murl, "Mdummy.jpg")
-    urllib.request.urlretrieve(Ourl, "Odummy.jpg")
-    urllib.request.urlretrieve(Hurl, "Hdummy.jpg")
-    urllib.request.urlretrieve(Burl, "Bdummy.jpg")
-    urllib.request.urlretrieve(Nurl, "Ndummy.jpg")
-    urllib.request.urlretrieve(Aurl, "Adummy.jpg")
-    
-    #rename Mirlo   
-    Mold = 'Mdummy.jpg'
-    Mnew = 'Mirlo/%s-Mirlo.jpg' % datetime.datetime.now()
-    os.rename(Mold, Mnew)
-    
-    #rename Ocracoke
-    Oold = 'Odummy.jpg'
-    Onew = 'Ocracoke/%s-Ocracoke.jpg' % datetime.datetime.now()
-    os.rename(Oold, Onew)
-    
-    #rename hatteras
-    Hold = 'Hdummy.jpg'
-    Hnew = 'Hatteras/%s-Hatteras.jpg' % datetime.datetime.now()
-    os.rename(Hold, Hnew)
-    
-        #rename buxton
-    Bold = 'Bdummy.jpg'
-    Bnew = 'Buxton/%s-Buxton.jpg' % datetime.datetime.now()
-    os.rename(Bold, Bnew)
-    
-    #rename new inlet
-    Nold = 'Ndummy.jpg'
-    Nnew = 'NewInlet/%s-NewInlet.jpg' % datetime.datetime.now()
-    os.rename(Nold, Nnew)
-    
-    #rename canal zone
-    Aold = 'Adummy.jpg'
-    Anew = 'Canal/%s-Canal.jpg' % datetime.datetime.now()
-    os.rename(Aold, Anew)
-    
+    #cameras:
+    GetTrafficCam(Mirlo,'Mirlo')
+    GetTrafficCam(Ocracoke,'Ocracoke')
+    GetTrafficCam(Hatteras, 'Hatteras')
+    GetTrafficCam(Buxton, 'Buxton')
+    GetTrafficCam(Canal, 'Canal')
+    GetTrafficCam(NewInlet, 'NewInlet')
+    GetTrafficCam(NorthDock,'NorthDock')
+    GetTrafficCam(SouthDock, 'SouthDock')
+  
 #schedule
 scheduler = sched.scheduler(time.time, time.sleep)
-scheduler.enter(0, 1, GetTraffic, ())
+scheduler.enter(0, 1, LookAtTraffic, ())
 
 #loop to make it go
 while True:
     scheduler.run()
-    scheduler.enter(Min*60, 1, GetTraffic, ())
+    scheduler.enter(Min*60, 1, LookAtTraffic, ())
+
 
 
 
