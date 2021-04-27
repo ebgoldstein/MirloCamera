@@ -42,7 +42,7 @@ def GetTrafficCam(URL,camera):
 def LookAtTraffic():
     
     #print for debug
-    print ("looking at traffic...%s" % datetime.datetime.now())
+    print ("looking at traffic...%s" % datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"))
     
     #cameras:
     GetTrafficCam(Mirlo,'Mirlo')
