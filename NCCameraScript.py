@@ -34,7 +34,7 @@ def GetTrafficCam(URL,camera):
     urllib.request.urlretrieve(URL, "dummy.jpg")
 
     #determine image name
-    ImName = camera + '/' + str(datetime.datetime.now()) + '-' + camera + '.jpg'
+    ImName = camera + '/' + str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")) + '-' + camera + '.jpg'
     
     #save image
     os.rename('dummy.jpg', ImName)
@@ -42,7 +42,7 @@ def GetTrafficCam(URL,camera):
 def LookAtTraffic():
     
     #print for debug
-    print ("looking at traffic...%s" % datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"))
+    print ("looking at traffic...%s" % datetime.datetime.now())
     
     #cameras:
     GetTrafficCam(Mirlo,'Mirlo')
