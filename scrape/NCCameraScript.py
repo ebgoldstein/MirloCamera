@@ -30,14 +30,20 @@ Min = 10
 #The function for the cameras
 def GetTrafficCam(URL,camera):
     
-    # retrieve the image
-    urllib.request.urlretrieve(URL, "dummy.jpg")
+    try:
+        # retrieve the image
+        urllib.request.urlretrieve(URL, "dummy.jpg")
 
-    #determine image name
-    ImName = camera + '/' + str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")) + '-' + camera + '.jpg'
+        #determine image name
+        ImName = camera + '/' + str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")) + '-' + camera + '.jpg'
     
-    #save image
-    os.rename('dummy.jpg', ImName)
+        #save image
+        os.rename('dummy.jpg', ImName)
+    
+    except:
+        print ("error with :")
+        print(camera)
+        print ("at time...%s" % datetime.datetime.now())        
     
 def LookAtTraffic():
     
